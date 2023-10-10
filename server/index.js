@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const User = require('./models/Users');
 const UserModel = require('./models/Users');
+const EmployeeModel = require('./models/Employee');
 
 const app = express();
 app.use(cors());
@@ -52,6 +53,36 @@ app.post("/createUser", (req, res) => {
         .then(users => res.json(users))
         .catch(err => res.json(err))
 });
+
+//Login & Register Part
+
+app.post("/login", (req, res) => {
+    const {email, password} = req.body;
+    EmployeeModel.findOne({email: email})
+    .then(user => {
+        if(user){
+            if(user.password === password ){
+                res.json("Login successfull")
+            }else{
+                res.jsom("Password didn't match")
+            }
+        }else{
+            res.json("User not registered")
+        }
+    })
+});
+
+
+
+
+app.post("/register", (req, res) => {
+    EmployeeModel.create(req.body)
+        .then(employees => res.json(employees))
+        .catch(err => res.json(err))
+});
+
+
+
 
 app.listen(3001, () => {
     console.log('Server is running..');
