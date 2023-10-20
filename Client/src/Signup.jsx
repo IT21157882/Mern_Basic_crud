@@ -1,16 +1,14 @@
-import { useState } from "react";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import ResponsiveAppBar from "./assets/ResponsiveAppBar";
 
 function Signup() {
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorAlert, setErrorAlert] = useState(false);
 
@@ -19,8 +17,15 @@ function Signup() {
     if (password !== confirmPassword) {
       setErrorAlert(true);
     } else {
+      // Add additional validation logic here if needed
+
       axios
-        .post("http://localhost:3001/register", { name, email, password })
+        .post("http://localhost:3001/register", {
+          name,
+          email,
+          phone,
+          password,
+        })
         .then((result) => {
           console.log(result);
           window.location.href = "/login";
@@ -42,6 +47,7 @@ function Signup() {
                 type="text"
                 className="form-control"
                 onChange={(e) => setName(e.target.value)}
+                required // This field is required
               />
             </div>
             <div className="form-group">
@@ -50,6 +56,15 @@ function Signup() {
                 type="email"
                 className="form-control"
                 onChange={(e) => setEmail(e.target.value)}
+                required // This field is required
+              />
+            </div>
+            <div className="form-group">
+              <label>Phone No.</label>
+              <input
+                type="tel"
+                className="form-control"
+                onChange={(e) => setPhone(e.target.value)}
               />
             </div>
             <div className="form-group">
@@ -58,6 +73,7 @@ function Signup() {
                 type="password"
                 className="form-control"
                 onChange={(e) => setPassword(e.target.value)}
+                required // This field is required
               />
             </div>
             <div className="form-group">
@@ -67,17 +83,17 @@ function Signup() {
                 className="form-control"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
+                required // This field is required
               />
             </div>
-            <div className="form-group">
+            <div className="form-group mt-3">
               <button className="btn btn-success">Register</button>
             </div>
           </form>
-          <h3 className="text-center">you Already Have Account</h3>
-          <div className="form-group">
-            <Link to="/Login/" className="btn btn-success">
-              Login
-            </Link>
+          <div className="form-group text-center mt-2">
+            <p>
+              You have an account, <Link to="/login">Login here</Link>.
+            </p>
           </div>
         </div>
       </div>

@@ -43,7 +43,7 @@ function Login() {
       <div className="d-flex vh-100 bg-primary justify-content-center align-items-center">
         <div className="w-25 bg-white rounded p-3">
           <form onSubmit={handleSubmit}>
-            <h1 className="text-center">Login </h1>
+            <h1 className="text-center display-5">Login</h1>
             <div className="form-group">
               <label>Email</label>
               <input
@@ -61,14 +61,16 @@ function Login() {
               />
             </div>
             <div className="form-group text-center">
-              <button className="btn btn-success text-center">Login</button>
-            </div>
-            <div className="form-group">
-              <Link to="/Signup/" className="btn btn-success">
-                Signup
-              </Link>
+              <button className="btn btn-success text-center mt-3">
+                Login
+              </button>
             </div>
           </form>
+          <div className="form-group text-center mt-2">
+            <p>
+              You haven't account, <Link to="/Signup/">Sign up here</Link>.
+            </p>
+          </div>
         </div>
       </div>
       <Modal show={showAlert} onHide={() => setShowAlert(false)}>

@@ -31,7 +31,6 @@ function Home() {
     setSelectedRecipe(null);
   };
 
-
   // Function to fetch categories from the external API
   useEffect(() => {
     // Fetch categories from an external API
@@ -77,7 +76,7 @@ function Home() {
     <>
       <ResponsiveAppBar />
       <div className="container mt-4">
-        <h1 className="text-center">Recipe Categories</h1>
+        <h1 className="text-center display-4">Recipe Categories</h1>
         <div className="row mt-4">
           <div className="col-12">
             <div className="d-flex flex-wrap ">
@@ -86,7 +85,6 @@ function Home() {
                   key={category.strCategory}
                   className="btn btn-outline-primary mx-2 my-2 rounded-pill"
                   onClick={() => setSelectedCategory(category.strCategory)}
-                  
                 >
                   {category.strCategory}
                 </button>
@@ -111,7 +109,6 @@ function Home() {
                     <div
                       className="favorite-icon"
                       onClick={() => toggleFavorite(recipe.idMeal)}
-                      
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -136,16 +133,24 @@ function Home() {
             ))}
           </div>
         )}
-         {/* Recipe Modal */}
-         {selectedRecipe && (
-          <div className="modal" style={selectedRecipe ? { display: "block" } : { display: "none" }}>
-          <div className="modal-content">
-            <span className="close" onClick={closeRecipeModal}>&times;</span>
-            <h2>{selectedRecipe && selectedRecipe.strMeal}</h2>
-            <img src={selectedRecipe && selectedRecipe.strMealThumb} alt={selectedRecipe && selectedRecipe.strMeal} />
-            <p>{selectedRecipe && selectedRecipe.strInstructions}</p>
+        {/* Recipe Modal */}
+        {selectedRecipe && (
+          <div
+            className="modal"
+            style={selectedRecipe ? { display: "block" } : { display: "none" }}
+          >
+            <div className="modal-content">
+              <span className="close" onClick={closeRecipeModal}>
+                &times;
+              </span>
+              <h2>{selectedRecipe && selectedRecipe.strMeal}</h2>
+              <img
+                src={selectedRecipe && selectedRecipe.strMealThumb}
+                alt={selectedRecipe && selectedRecipe.strMeal}
+              />
+              <p>{selectedRecipe && selectedRecipe.strInstructions}</p>
+            </div>
           </div>
-        </div>
         )}
       </div>
     </>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-// Import your logout SVG icon
+// Import  logout SVG icon
 import LogoutIcon from '../assets/logout-icon.svg';
 
 function ResponsiveAppBar() {
@@ -32,7 +32,7 @@ function ResponsiveAppBar() {
         </Navbar.Collapse>
         {/* Logout button with SVG icon */}
         <Link to="/login" className="btn btn-light">
-          <span style={{ marginRight: '5px' }}>Logout</span>
+          <span style={{ marginRight: '5px' }}></span>
           <img src={LogoutIcon} alt="Logout" width="15" height="15" />
         </Link>
       </Container>
